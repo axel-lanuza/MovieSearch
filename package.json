@@ -1,0 +1,26 @@
+{
+  "name": "movie_search",
+  "version": "1.0.0",
+  "description": "A website to search movies by their title or id",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server --hot --inline"
+  },
+  "keywords": [
+    "movies",
+    "search",
+    "EcmaSript6",
+    "themoviesdb"
+  ],
+  "author": "Anna Fedrunova",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}

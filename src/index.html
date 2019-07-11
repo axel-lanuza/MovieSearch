@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="author" content="Anna Fedrunova">
+    <meta name="owner" content="Fedrunovs inc.">
+    <meta name="site-created" content="7/10/2019">
+    <meta name="generator" content="Webstorm 2019.1.1">
+    <meta name="keywords" content="movie, movies, film, films, TV-show, TV-shows, episodes, find, search, search movies, search TV-shows">
+    <meta name="description" content="On MovieSerach you can search for movies and TV-shows by their title, sort the results by popularity and release date.
+    You can find out more details such as a movie cast, genre, a TV-show seasons, number of episodes, first-air-date, next episode date, etc.">
+    <title>Movies search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<div class="list-wrapper">
+    <div class="col-md-12">
+        <h1 class="main-title">I want to find the movie...</h1>
+        <div class="form-group search-block">
+            <input type="text" class="search-input form-control">
+            <div class="row filter-group">
+                <div class="col-md-6 filter"> Popularity
+                    <label>
+                        <input type="radio" name="filter" value="max">
+                        max
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="min">
+                        min
+                    </label>
+                </div>
+                <div class="col-md-6 filter"> Release date
+                    <label>
+                        <input type="radio" name="filter" value="new">
+                        the newest
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="old">
+                        the oldest
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container movies"></div>
+</div>
+<!--    Get rid of this div when you implement routing -->
+<div class="movie-wrapper"></div>
+
+<script src="../dist/bundle.js"></script>
+</body>
+</html>

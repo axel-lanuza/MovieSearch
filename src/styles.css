@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:300,400,700&display=swap');
+
+.main-title {
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.search-block {
+    width: 60%;
+    margin: auto;
+}
+/*Filters*/
+.filter-group {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.filter {
+    margin-top: 1%;
+    text-align: center;
+}
+
+.filter label {
+    margin: 0 2%;
+}
+
+/*Movie list*/
+.movies {
+    width: 70%;
+}
+/*A movie on the list*/
+.movie {
+    margin: 2% auto;
+    /*padding: 2%;*/
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    border: 1px outset lightgray;
+    /*box-shadow: 0 0 5px #007bff;*/
+    transition: box-shadow 0.15s ease-in-out 0.3ms;
+}
+
+.movie:hover {
+    box-shadow: 0 0 15px #007bff;
+}
+
+.data {
+    padding: 2%;
+}
+.poster {
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 2%;
+    /*overflow: hidden;*/
+    box-shadow: 5px 0 5px lightsteelblue;
+}
+
+a.movie-link {
+    text-decoration: none;
+    color: #212529;
+    transition: color 0.15s ease-in-out;
+}
+
+a.movie-link :hover h2 {
+    color: #007bff;
+}
+
+a.movie-link :hover .overview {
+
+}
+
+.movie h2 {
+    font-weight: 700;
+}
+
+.additional-info {
+    color: grey;
+}
+
+.additional-info div {
+    min-width: 120px;
+}
+
+.overview {
+    margin-top: 2%;
+}
+/*Movie card*/
+.movie-card {
+    width:80%;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.back-btn{
+    width: 21%;
+    min-width: 140px;
+    margin:2% 0;
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+    padding: 0.5%;
+    border: 1px outset lightgray;
+    border-radius: 6px;
+    box-shadow: 0 0 3px #007bff;
+    color: #212529;
+    transition: all 0.15s ease-in-out;
+    z-index: 0;
+}
+.back-btn.btn{
+    font-weight: 400;
+}
+.back-btn:hover {
+    box-shadow: 0 0 10px #007bff;
+}
+.back-btn:hover .btn{
+    font-weight: 700;
+}
+
+.card-poster {
+    width: 100%;
+    min-height: 400px;
+    /*overflow: hidden;*/
+    box-shadow: 5px 0 5px lightsteelblue;
+}
