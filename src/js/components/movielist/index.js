@@ -1,4 +1,4 @@
-import {movie} from '../movie';
+import Movie from '../movie';
 
 export default class MovieList {
     static clearList(selector) {
@@ -15,8 +15,9 @@ export default class MovieList {
         this.fragment = document.createDocumentFragment();
         this.data.forEach(data => {
             const article = document.createElement('article');
+            const movie = new Movie(data);
             article.classList.add('movie');
-            article.innerHTML = movie(data);
+            article.innerHTML = movie.generateHTML();
             this.fragment.appendChild(article);
         })
     }

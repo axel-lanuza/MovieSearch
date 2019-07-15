@@ -1,46 +1,63 @@
-import config from '../../config';
+import config from "../../config";
 
-function movie(data) {
-    const readyData = mapData(data);
-    return `
-    <a href='${readyData.id}' data-type='${readyData.type}' class="movie-link">
-    <div class="row data">
-    <!-- <div class="col-md-4"><div class="poster"><img src=''></div></div> -->
-    <div class="col-md-4">
-    <div class="poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
-    <div class="col-md-8"><h2>${readyData.title}</h2>
-    <div class="row additional-info">
-    <div class="col-md-3">Released in ${readyData.date}</div>
-    <!-- <div>{readyData.genre}</div>-->
-    <div class="col-md-3">Origin: ${readyData.country}</div>
-    <div class="col-md-3">Language: ${readyData.language}</div>
-    <div class="col-md-3">Rating: ${readyData.vote}</div></div>
-    <div class="overview">${readyData.description}</div></div></div>
-    </a>`;
-}
+export default class Movie {
+    constructor(data) {
+        this.data = data;
+    }
 
-function mapData(data) {
-    let getPoster = () => {
-        const url = data.backdrop_path || data.poster_path;
+    generateHTML() {
+        const readyData = this.mapData();
+        return `
+            <a href='${readyData.id}' data-type='${readyData.type}' class="movie-link">
+            <div class="row data">
+            <!-- <div class="col-md-4"><div class="poster"><img src=''></div></div> -->
+            <div class="col-md-4">
+            <div class="poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
+            <div class="col-md-8"><h2>${readyData.title}</h2>
+            <div class="row additional-info">
+            <div class="col-md-3">Released in ${readyData.date}</div>
+            <!-- <div>{readyData.genre}</div>-->
+            <div class="col-md-3">Origin: ${readyData.country}</div>
+            <div class="col-md-3">Language: ${readyData.language}</div>
+            <div class="col-md-3">Rating: ${readyData.vote}</div></div>
+            <div class="overview">${readyData.description}</div></div></div>
+            </a> `
+    }
+
+    mapData() {
+        return {
+            title: this.data.title || this.data.name || this.data.original_title || this.data.original_name,
+            poster: this.getPoster(),
+            date: this.getYear(),
+            country: this.getCountry(),
+            language: this.data.original_language,
+            vote: this.data.vote_average,
+            description: this.data.overview,
+            id: this.data.id,
+            type: this.data.contentType
+        };
+    }
+
+    getPoster() {
+        const url = this.data.backdrop_path || this.data.poster_path;
         if (url) {
             return config.imgSrc + url;
         } else {
             return config.noImgSrc;
         }
+    }
 
-    };
-
-    let getYear = () => {
-        const date = data.release_date || data.first_air_date;
+    getYear() {
+        const date = this.data.release_date || this.data.first_air_date;
         if (!date) {
             return '?'
         } else {
             return date.slice(0, 4);
         }
-    };
+    }
 
-    let getCountry = () => {
-        const countryCode = data.origin_country || data.original_language;
+    getCountry() {
+        const countryCode = this.data.origin_country || this.data.original_language;
         let country;
         switch (countryCode) {
             case 'US':
@@ -48,6 +65,9 @@ function mapData(data) {
                 break;
             case 'en':
                 country = 'USA';
+                break;
+            case 'pt':
+                country = 'Portugal';
                 break;
             case 'it':
                 country = 'Italy';
@@ -90,25 +110,8 @@ function mapData(data) {
                 country = 'China';
                 break;
             default:
-                country = 'USA';
+                country = 'US';
         }
         return country;
-    };
-
-    return {
-        title: data.title || data.name || data.original_title || data.original_name,
-        poster: getPoster(),
-        date: getYear(),
-        country: getCountry(),
-        language: data.original_language,
-        vote: data.vote_average,
-        description: data.overview,
-        id: data.id,
-        type: data.contentType
-    };
-}
-
-export {
-    movie,
-    mapData
+    }
 }

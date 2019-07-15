@@ -1,6 +1,6 @@
 import service from './service';
 import MovieList from './components/movielist/index';
-import movieCard from './components/movieCard/index';
+import MovieCard from './components/movieCard/index';
 
 const input = document.querySelector('.search-input');
 const movieList = document.querySelector('.movies');
@@ -40,6 +40,7 @@ movieList.addEventListener('click', e => {
     }
     service.getMovieById(id, type)
         .then(result => {
-            movieCard(result);
+            const card = new MovieCard(result);
+            card.renderMovieCard();
         })
 });
