@@ -23,7 +23,7 @@ export default class MovieCard extends Movie {
             <div class="card-poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
             <div class="col-md-8"><h2>${readyData.title}</h2>
             <div class="additional-info"> 
-            <div>Rating: ${readyData.vote}</div>
+            <div id="can">Rating: ${readyData.vote}</div>
             <div>Genre: ${readyData.genres}</div>
             <div>Duration: ${readyData.duration} min</div>
             <div>Released on ${readyData.date}</div> 
@@ -45,7 +45,7 @@ export default class MovieCard extends Movie {
             <div class="card-poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
             <div class="col-md-8"><h2>${readyData.title}</h2>
             <div class="additional-info">
-            <div>Rating: ${readyData.vote}</div>
+            <div id="can">Rating: ${readyData.vote}</div>
             <div>Genre: ${readyData.genres}</div>
             <div>Status: ${readyData.status}</div>
             <div>Seasons: ${readyData.seasonsNumber}</div>
@@ -81,6 +81,7 @@ export default class MovieCard extends Movie {
                 budget: this.data.budget,
                 revenue: this.data.revenue,
                 vote: this.data.vote_average,
+                stars: this.getStars(),
                 description: this.data.overview,
                 id: this.data.id,
                 type: this.data.contentType
@@ -126,6 +127,61 @@ export default class MovieCard extends Movie {
         }
     }
 
+    getStars() {
+        const rating = this.data.vote_average;
+        let canvas = document.createElement("canvas");
+        canvas.style.marginLeft ='5px';
+        canvas.height = '14';
+        canvas.width= '140';
+        let ctx = canvas.getContext("2d");
+        ctx.save();
+        ctx.lineJoin = 'miter';
+        ctx.strokeStyle = 'rgb(0, 0, 0)';
+        ctx.lineCap = 'butt';
+        ctx.lineWidth = 0.5;
+
+        for (let i = 0; i < 10; i++) {
+            drawStar(i);
+        }
+
+        function drawStar(i) {
+            ctx.save();
+            ctx.translate(ctx.canvas.height * i, 0);
+            ctx.beginPath();
+            ctx.moveTo(ctx.canvas.height / 2, 0);
+            ctx.lineTo(ctx.canvas.height / 4 + ctx.canvas.height / 11, ctx.canvas.height / 4 + ctx.canvas.height / 11);
+            ctx.lineTo(0, ctx.canvas.height / 2 - ctx.canvas.height / 11);
+            ctx.lineTo(ctx.canvas.height / 8 + ctx.canvas.height / 11, 3 * ctx.canvas.height / 4 - ctx.canvas.height / 11);
+            ctx.lineTo(ctx.canvas.height / 4, ctx.canvas.height);
+            ctx.lineTo(ctx.canvas.height / 2, ctx.canvas.height - 2 * ctx.canvas.height / 11);
+            ctx.lineTo(3 * ctx.canvas.height / 4, ctx.canvas.height);
+            ctx.lineTo(7 * ctx.canvas.height / 8 - ctx.canvas.height / 11, 3 * ctx.canvas.height / 4 - ctx.canvas.height / 11);
+            ctx.lineTo(ctx.canvas.height, ctx.canvas.height / 2 - ctx.canvas.height / 11);
+            ctx.lineTo(3 * ctx.canvas.height / 4 - ctx.canvas.height / 11, ctx.canvas.height / 4 + ctx.canvas.height / 11);
+            ctx.lineTo(ctx.canvas.height / 2, 0);
+            ctx.closePath();
+
+            if ((i + 1) <= rating) {
+                ctx.fillStyle = 'yellow';
+                ctx.fill();
+            } else if ((i + 1) > rating && i < rating) {
+                fillGradient(i);
+            }
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function fillGradient(i) {
+            let gr = rating - i;
+
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+            ctx.clearRect(ctx.canvas.height * gr, 0, ctx.canvas.height - ctx.canvas.height * gr, ctx.canvas.height);
+
+        }
+        return canvas;
+    }
+
     renderMovieCard() {
         listWrapper.style.display = 'none';
         const card = document.createElement('article');
@@ -134,6 +190,8 @@ export default class MovieCard extends Movie {
         movieWrapper.innerHTML = '';
         movieWrapper.style.display = 'block';
         movieWrapper.appendChild(card);
+        const canvasContainer = document.querySelector('#can');
+        canvasContainer.appendChild(this.getStars());
         const backBtn = document.querySelector('.back-btn');
         backBtn.addEventListener('click', MovieCard.closeCard);
     }
