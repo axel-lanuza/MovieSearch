@@ -47,7 +47,6 @@ function getMovieById(id, type) {
             .then (result => {
                 MovieObj = {...result};
                 MovieObj.contentType=MOVIE;
-                console.log(MovieObj);
                 return MovieObj;
             })
     }
@@ -57,7 +56,6 @@ function getMovieById(id, type) {
             .then (result => {
                 TVshowObj = {...result};
                 TVshowObj.contentType=TVSHOW;
-                console.log(TVshowObj);
                 return TVshowObj;
             })
 
