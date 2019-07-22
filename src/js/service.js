@@ -8,12 +8,6 @@ function getMovieByText(text) {
         return;
     }
 
-    //Search in 1 category
-
-    // return fetch(config.searchMovieUrl + text)
-    //     .then(result => result.json())}
-
-
     // Search in movies and TVshows
     let resultsMovies;
     let resultsShows;

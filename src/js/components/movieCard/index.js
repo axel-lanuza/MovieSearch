@@ -1,4 +1,5 @@
 import Movie from '../movie'
+import config from "../../config";
 
 const listWrapper = document.querySelector('.list-wrapper');
 const movieWrapper = document.querySelector('.movie-wrapper');
@@ -17,7 +18,6 @@ export default class MovieCard extends Movie {
         let html;
         if (readyData.type === MOVIE) {
             html = `
-            <!-- <div class="col-md-4"><div class="poster"><img src=''></div></div> -->
             <div class="row movie-data">
             <div class="col-md-4">
             <div class="card-poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
@@ -40,7 +40,6 @@ export default class MovieCard extends Movie {
         }
         if (readyData.type === TVSHOW) {
             html = `
-            <!-- <div class="col-md-4"><div class="poster"><img src=''></div></div> -->
             <div class="row movie-data">
             <div class="col-md-4">
             <div class="card-poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
@@ -118,6 +117,14 @@ export default class MovieCard extends Movie {
         return values.join(', ');
     }
 
+    getPoster() {
+        const url = this.data.backdrop_path || this.data.poster_path;
+        if (url) {
+            return config.imgForCardSrc + url;
+        } else {
+            return config.noimgForCardSrc;
+        }
+    }
 
     renderMovieCard() {
         listWrapper.style.display = 'none';

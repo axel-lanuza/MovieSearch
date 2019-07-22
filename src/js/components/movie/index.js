@@ -10,13 +10,10 @@ export default class Movie {
         return `
             <a href='${readyData.id}' data-type='${readyData.type}' class="movie-link">
             <div class="row data">
-            <!-- <div class="col-md-4"><div class="poster"><img src=''></div></div> -->
-            <div class="col-md-4">
-            <div class="poster" style="background: url(${readyData.poster}) center no-repeat; background-size: cover"></div></div>
+            <div class="col-md-4"><div class="poster"><img alt='${readyData.title}' src='${readyData.poster}'></div></div>
             <div class="col-md-8"><h2>${readyData.title}</h2>
             <div class="row additional-info">
             <div class="col-md-3">Released in ${readyData.date}</div>
-            <!-- <div>{readyData.genre}</div>-->
             <div class="col-md-3">Origin: ${readyData.country}</div>
             <div class="col-md-3">Language: ${readyData.language}</div>
             <div class="col-md-3">Rating: ${readyData.vote}</div></div>

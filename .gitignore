@@ -1,3 +1,2 @@
 .idea/
-src/js/components/movie/movieClass.js
-src/js/components/movieCard/movieCardClass.js
+.node_modules/

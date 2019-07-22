@@ -31,10 +31,8 @@
 /*A movie on the list*/
 .movie {
     margin: 2% auto;
-    /*padding: 2%;*/
     font-family: 'Yanone Kaffeesatz', sans-serif;
     border: 1px outset lightgray;
-    /*box-shadow: 0 0 5px #007bff;*/
     transition: box-shadow 0.15s ease-in-out 0.3ms;
 }
 
@@ -47,12 +45,16 @@
 }
 .poster {
     width: 100%;
-    min-height: 300px;
+    max-height: 200px;
     margin-bottom: 2%;
-    /*overflow: hidden;*/
+    overflow: hidden;
     box-shadow: 5px 0 5px lightsteelblue;
 }
-
+.poster img{
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
 a.movie-link {
     text-decoration: none;
     color: #212529;
